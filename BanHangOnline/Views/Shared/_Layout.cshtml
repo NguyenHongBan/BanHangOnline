@@ -120,11 +120,11 @@
 								<li class="dropdown">
 									<a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
-										<li><a>Categories</a></li>
-										<li><a>Product Details</a></li>
-										<li><a>Checkout</a></li>
-										<li><a>Cart</a></li>
-										<li><a>Login</a></li>
+										<li><a asp-controller="Categories">Categories</a></li>
+										<li><a asp-controller="Product" asp-action="Details">Product Details</a></li>
+										<li><a asp-controller="Cart" asp-action="Checkout">Checkout</a></li>
+										<li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
+										<li><a >Login</a></li>
 									</ul>
 								</li>
 								<li class="dropdown">

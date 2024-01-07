@@ -1,6 +1,12 @@
-﻿namespace BanHangOnline.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace BanHangOnline.Controllers
 {
-	public class CategoriesController
+	public class CategoriesController : Controller
 	{
+		public IActionResult Index()
+		{
+			return View();
+		}
 	}
 }
