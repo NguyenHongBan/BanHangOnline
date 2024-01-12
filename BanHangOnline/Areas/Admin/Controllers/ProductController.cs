@@ -1,5 +1,6 @@
 ﻿using BanHangOnline.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BanHangOnline.Areas.Admin.Controllers
 {
@@ -11,9 +12,9 @@ namespace BanHangOnline.Areas.Admin.Controllers
 		{
 			_dataContext = context;
 		}
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
-			return View();
+			return View(await _dataContext.Products.OrderByDescending(p => p.Id).Include(p => p.Categories).Include(p => p.Brand).ToListAsync()	);
 		}
 	}
 }
