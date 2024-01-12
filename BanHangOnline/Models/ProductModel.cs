@@ -17,7 +17,9 @@ namespace BanHangOnline.Models
 
 		[Required, MinLength(4, ErrorMessage = "Yêu cầu nhập Giá Sản phẩm")]
 		public decimal Price { get; set; }
-		
+
+		public int Quantity { get; set; }
+
 		public int BrandId { get; set; }
 		
 		public int CategoriesId { get; set; }
