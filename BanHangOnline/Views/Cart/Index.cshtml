@@ -27,7 +27,7 @@
 						{
 							<tr>
 								<td class="cart_product">
-									<a href=""><img src="~/images/@item.Image" alt=""></a>
+									<a href=""><img src="~/images/@item.Image" alt="" width="150px" height="150px"></a>
 								</td>
 								<td class="cart_description">
 									<h4><a href="">@item.ProductName"</a></h4>
@@ -36,23 +36,23 @@
 									<p>@item.Price" VNĐ</p>
 								</td>
 								<td class="cart_quantity">
-									<div class="cart_quantity_button">
-										<a class="btn btn-primary btn-sm" asp-controller="Cart" asp-action="Increase" asp-route-id="@item.ProductId"> + </a>
+									<div class="input-group">
+										<span class="input-group-btn"><a class="btn btn-default btn-sm" asp-controller="Cart" asp-action="Increase" asp-route-id="@item.ProductId"> + </a></span>
 										<input class="cart_quantity_input" type="text" name="quantity" value="@item.Quantity" autocomplete="off" size="2">
-										<a class="btn btn-success btn-sm" asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.ProductId"> - </a>
-										<a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Remove" asp-route-id="@item.ProductId"> Remove </a>
+										<span><a class="btn btn-default btn-sm" asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.ProductId"> - </a></span>
 									</div>
 								</td>
 								<td class="cart_total">
 									<p class="cart_total_price">@Model.CartItems.Where(x => x.ProductId == @item.ProductId).Sum(x => x.Quantity * x.Price).ToString()</p>
 								</td>
-								<td class="cart_delete">
-									<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<td>
+									<a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Remove" asp-route-id="@item.ProductId"> Remove </a>
 								</td>
 							</tr>
 						}	
-						<tr>
-							<td colspan="6">Tổng: @Model.GrandTotal.ToString()</td>
+						<tr rowspan="6">
+							<td colspan="6">Tổng: <p class="cart_total_price">@Model.GrandTotal.ToString()</p></td>
+							<td><a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Claer"> Claer </a></td>
 						</tr>
 					}
 					else

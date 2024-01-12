@@ -33,5 +33,17 @@ namespace BanHangOnline.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-    }
+
+		public async Task<IActionResult> Search(string searchString)
+		{
+
+			var products = await _dataContext.Products
+				.Include("Categories")
+				.Include("Brand")
+				.Where(p => p.Name.Contains(searchString) || p.Description.Contains(searchString))
+				.ToListAsync();
+
+			return View("Index", products);
+		}
+	}
 }
