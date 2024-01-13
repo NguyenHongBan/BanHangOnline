@@ -158,5 +158,17 @@ namespace BanHangOnline.Areas.Admin.Controllers
             TempData["sucess"] = "Xóa sản phẩm thành công";
             return RedirectToAction("Index");
         }
-    }
+
+		public async Task<IActionResult> Search(string searchString)
+		{
+
+			var products = await _dataContext.Products
+				.Include("Categories")
+				.Include("Brand")
+				.Where(p => p.Name.Contains(searchString) || p.Description.Contains(searchString))
+				.ToListAsync();
+
+			return View("Index", products);
+		}
+	}
 }
