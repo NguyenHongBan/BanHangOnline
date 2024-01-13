@@ -1,4 +1,5 @@
-﻿using BanHangOnline.Repository;
+﻿using BanHangOnline.Models;
+using BanHangOnline.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,15 @@ namespace BanHangOnline.Areas.Admin.Controllers
 		public IActionResult Create()
 		{
 			ViewBag.Categories = new SelectList(_dataContext.Categories, "Id", "Name");
+			ViewBag.Brands = new SelectList(_dataContext.Brands, "Id", "Name");
 			return View();
 		}
-	}
+
+        public async Task<IActionResult> Create(ProductModel product)
+        {
+            ViewBag.Categories = new SelectList(_dataContext.Categories, "Id", "Name", product.CategoriesId);
+            ViewBag.Brands = new SelectList(_dataContext.Brands, "Id", "Name", product.BrandId);
+            return View(product);
+        }
+    }
 }

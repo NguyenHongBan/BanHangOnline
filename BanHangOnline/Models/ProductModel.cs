@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BanHangOnline.Repository.Validation;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BanHangOnline.Models
 {
@@ -28,5 +30,9 @@ namespace BanHangOnline.Models
 		public BrandModel Brand { get; set; }
 
 		public string Image {  get; set; }
+
+		[NotMapped]
+		[FileExtension]
+		public IFormFile ImageUpload { get; set; }
 	}
 }
