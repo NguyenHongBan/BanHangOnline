@@ -30,7 +30,7 @@ namespace BanHangOnline.Models
 		public CategoriesModel Categories { get; set; }
 		public BrandModel Brand { get; set; }
 
-		public string Image {  get; set; }
+		public string Image { get; set; } = "noimage.jpg";
 
 		[NotMapped]
 		[FileExtension]
