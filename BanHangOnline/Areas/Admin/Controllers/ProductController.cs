@@ -91,7 +91,7 @@ namespace BanHangOnline.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ProductModel product)
+        public async Task<IActionResult> Edit(int Id, ProductModel product)
         {
             ViewBag.Categories = new SelectList(_dataContext.Categories, "Id", "Name", product.CategoriesId);
             ViewBag.Brands = new SelectList(_dataContext.Brands, "Id", "Name", product.BrandId);
@@ -138,6 +138,25 @@ namespace BanHangOnline.Areas.Admin.Controllers
                 return BadRequest(errorMessage);
             }
             return View(product);
+        }
+
+        public async Task<IActionResult> Delete(int Id)
+		{
+            ProductModel product = await _dataContext.Products.FindAsync(Id);
+			if(!string.Equals(product.Image, "noname.jpg"))
+			{
+                string uploadsDir = Path.Combine(_webHostEnvironment.WebRootPath, "media/products");
+                string oldfileImage = Path.Combine(uploadsDir, product.Image);
+				if (System.IO.File.Exists(oldfileImage))
+				{
+					System.IO.File.Delete(oldfileImage);
+
+                }
+            }
+			_dataContext.Products.Remove(product);
+			await _dataContext.SaveChangesAsync();
+            TempData["sucess"] = "Xóa sản phẩm thành công";
+            return RedirectToAction("Index");
         }
     }
 }

@@ -55,7 +55,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+								<li><a asp-controller="Product" asp-action="Index" class="active">Home</a></li>
 								<li class="dropdown">
 									<a asp-controller="Product">Shop<i></i></a>
 									<ul role="menu" class="sub-menu">
@@ -81,10 +81,10 @@
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
 							@* <input type="text" placeholder="Search" /> *@
-							<form asp-controller="Home" asp-action="Search" method="get">
+							@* <form asp-controller="Home" asp-action="Search" method="get">
 								<input type="text" name="searchString" placeholder="Search" />
 								<button class="btn btn-default" type="submit">Search</button>
-							</form>
+							</form> *@
 						</div>
 					</div>
 				</div>
