@@ -31,6 +31,16 @@ namespace BanHangOnline.Areas.Admin.Controllers
         {
             ViewBag.Categories = new SelectList(_dataContext.Categories, "Id", "Name", product.CategoriesId);
             ViewBag.Brands = new SelectList(_dataContext.Brands, "Id", "Name", product.BrandId);
+
+			if(ModelState.IsValid)
+			{
+
+			}
+			else
+			{
+				TempData["error"] = "Model đang lỗi";
+			}
+
             return View(product);
         }
     }

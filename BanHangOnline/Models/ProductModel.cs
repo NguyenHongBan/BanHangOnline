@@ -9,22 +9,23 @@ namespace BanHangOnline.Models
 		[Key]
 		public int Id { get; set; }
 
-		[Required, MinLength(4, ErrorMessage = "Yêu cầu nhập Tên Sản phẩm")]
+		[Required(ErrorMessage = "Yêu cầu nhập Tên Sản phẩm")]
 		public string Name { get; set; }
 		
-		[Required, MinLength(4, ErrorMessage = "Yêu cầu nhập mô tả Sản phẩm")]
+		[Required(ErrorMessage = "Yêu cầu nhập mô tả Sản phẩm")]
 		public string Description { get; set; }
 
 		public string Slug { get; set; }
 
-		[Required, MinLength(4, ErrorMessage = "Yêu cầu nhập Giá Sản phẩm")]
+		[Required(ErrorMessage = "Yêu cầu nhập Giá Sản phẩm")]
+		[Range(0.01, double.MaxValue)]
 		public decimal Price { get; set; }
-
-		public int Quantity { get; set; }
-
-		public int BrandId { get; set; }
-		
-		public int CategoriesId { get; set; }
+        [Required(ErrorMessage = "Yêu cầu nhập Số lượng")]
+        public int Quantity { get; set; }
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Vui lòng chọn thương hiệu")]
+        public int BrandId { get; set; }
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Vui lòng chọn danh mục")]
+        public int CategoriesId { get; set; }
 
 		public CategoriesModel Categories { get; set; }
 		public BrandModel Brand { get; set; }
@@ -33,6 +34,6 @@ namespace BanHangOnline.Models
 
 		[NotMapped]
 		[FileExtension]
-		public IFormFile ImageUpload { get; set; }
+        public IFormFile ImageUpload { get; set; }
 	}
 }
