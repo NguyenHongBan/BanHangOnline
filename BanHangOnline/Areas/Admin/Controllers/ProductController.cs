@@ -19,6 +19,7 @@ namespace BanHangOnline.Areas.Admin.Controllers
 			return View(await _dataContext.Products.OrderByDescending(p => p.Id).Include(p => p.Categories).Include(p => p.Brand).ToListAsync()	);
 		}
 
+		[HttpGet]
 		public IActionResult Create()
 		{
 			ViewBag.Categories = new SelectList(_dataContext.Categories, "Id", "Name");
