@@ -1,9 +1,17 @@
 ﻿@model IEnumerable<ProductModel>
 @{
-    ViewData["title"] = "Danh sách sản phẩm";
+    ViewData["title"] = "Danh sach san pham";
 }
 <h3>Danh sách sản phẩm</h3>
-<a class="btn btn-success btn-sm" asp-action="Create" asp-controller="Product">Thêm sản phẩm</a>
+<div class="row-sm-3">
+    <a class="btn btn-success btn-sm" asp-action="Create" asp-controller="Product">Thêm sản phẩm</a>
+    <div class="search_box pull-right">
+        <form asp-controller="Product" asp-action="Search" method="get">
+            <input type="text" name="searchString" placeholder="Search" />
+            <button class="btn btn-default" type="submit">Search</button>
+        </form>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
