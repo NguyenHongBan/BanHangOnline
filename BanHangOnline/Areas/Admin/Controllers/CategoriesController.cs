@@ -1,6 +1,7 @@
 ﻿using BanHangOnline.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace BanHangOnline.Areas.Admin.Controllers
@@ -21,7 +22,12 @@ namespace BanHangOnline.Areas.Admin.Controllers
 			return View(await _dataContext.Categories.OrderByDescending(c => c.Id).ToListAsync());
 		}
 
-		public async Task<IActionResult> Search(string searchString)
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Search(string searchString)
 		{
 
 			var products = await _dataContext.Categories
