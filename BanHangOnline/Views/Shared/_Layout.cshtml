@@ -53,8 +53,8 @@
 							<ul class="nav navbar-nav">
 								<li><a href="#"> Account</a></li>
 								<li><a href="checkout.html"> Checkout</a></li>
-								<li><a href="cart.html"> Cart</a></li>
-								<li><a href="login.html"> Login</a></li>
+								<li><a asp-controller="Cart" asp-action="Index"> Cart</a></li>
+								<li><a asp-controller="Account"> Login</a></li>
 							</ul>
 						</div>
 					</div>
@@ -81,7 +81,7 @@
 								<li class="dropdown">
 									<a asp-controller="Product">Shop<i></i></a>
 									<ul role="menu" class="sub-menu">
-										<li><a asp-controller="Categories">Categories</a></li>
+										@* <li><a asp-controller="Categories">Categories</a></li> *@
 										@* <li><a asp-controller="Product" asp-action="Details">Product Details</a></li> *@
 										<li><a asp-controller="Cart" asp-action="Checkout">Checkout</a></li>
 										<li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
@@ -356,5 +356,6 @@
 	<script src="~/js/price-range.js"></script>
 	<script src="~/js/jquery.prettyPhoto.js"></script>
 	<script src="~/js/main.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

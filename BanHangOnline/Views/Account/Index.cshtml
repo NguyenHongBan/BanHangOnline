@@ -1,0 +1,33 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = "Dang Nhap";
+}
+<section id="form">
+	<!--form-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-1">
+				<div class="login-form">
+					<!--login form-->
+					<h2>Đăng nhập tài khoản của bạn</h2>
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<form asp-action="Login" asp-controller="Account">
+						<div class="form-group">
+							<label>Tên Đăng Nhập</label>
+							<input asp-for="Username" class="form-control" />
+							<span asp-validation-for="Username" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label>Mật Khẩu</label>
+							<input asp-for="Password" class="form-control" />
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<button class="btn btn-default">Login</button>
+						<button class="btn btn-default" asp-action="Create" asp-controller="Account">Đăng ký tài khoản</button>
+					</form>
+				</div><!--/login form-->
+			</div>
+		</div>
+	</div>
+</section>
