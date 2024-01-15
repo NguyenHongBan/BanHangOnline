@@ -64,6 +64,49 @@ namespace BanHangOnline.Areas.Admin.Controllers
             return View(categories);
         }
 
+        
+        public async Task<IActionResult>Edit(int Id)
+        {
+            CategoriesModel categories = await _dataContext.Categories.FindAsync(Id);
+            return View(categories);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(CategoriesModel categories)
+        {
+            if (ModelState.IsValid)
+            {
+                categories.Slug = categories.Name.Replace(" ", "_");
+                var slug = await _dataContext.Categories.FirstOrDefaultAsync(p => p.Slug == categories.Slug);
+                if (slug != null)
+                {
+                    ModelState.AddModelError("", "Danh mục đã tồn tại");
+                    return View(categories);
+                }
+
+                _dataContext.Update(categories);
+                await _dataContext.SaveChangesAsync();
+                TempData["sucess"] = "Cập nhật danh mục thành công";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["error"] = "Model đang lỗi";
+                List<string> errors = new List<string>();
+                foreach (var value in ModelState.Values)
+                {
+                    foreach (var error in value.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+                string errorMessage = string.Join("\n", errors);
+                return BadRequest(errorMessage);
+            }
+            return View(categories);
+        }
+
         public async Task<IActionResult> Delete(int Id)
         {
             CategoriesModel categories = await _dataContext.Categories.FindAsync(Id);

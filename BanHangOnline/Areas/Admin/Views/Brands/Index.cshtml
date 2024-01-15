@@ -1,12 +1,12 @@
-﻿@model IEnumerable<CategoriesModel>
+﻿@model IEnumerable<BrandModel>
 @{
-    ViewData["title"] = "Danh Sanh Danh Muc";
+    ViewData["title"] = "Danh Sanh Thuong Hieu";
 }
-<h3>Danh sách Danh mục sản phẩm</h3>
+<h3>Danh sách thương hiệu sản phẩm</h3>
 <div class="row-sm-3">
-    <a class="btn btn-success btn-sm" asp-action="Create" asp-controller="Categories">Thêm danh mục</a>
+    <a class="btn btn-success btn-sm" asp-action="Create" asp-controller="Brands">Thêm thương hiệu</a>
     <div class="search_box pull-right">
-        <form asp-controller="Categories" asp-action="Search" method="get">
+        <form asp-controller="Brands" asp-action="Search" method="get">
             <input type="text" name="searchString" placeholder="Search" />
             <button class="btn btn-default" type="submit">Search</button>
         </form>
@@ -16,11 +16,11 @@
     <thead>
         <tr>
             @* <th scope="col">ID</th> *@
-            <th scope="col">Tên Danh Mục</th>
-            <th scope="col">Mô Tả Danh Mục</th>
+            <th scope="col">Tên Thương Hiệu</th>
+            <th scope="col">Mô Tả Thương Hiệu</th>
             <th scope="col">Trạng Thái</th>
             <th scope="col">Quản lý</th>
-            
+
         </tr>
     </thead>
     <tbody>
@@ -31,7 +31,7 @@
                 <td>@item.Name</td>
                 <td>@Html.Raw(@item.Description)</td>
                 <td>
-                    @if(item.Status == 1)
+                    @if (item.Status == 1)
                     {
                         <span class="text text-success">Hiển thị</span>
                     }
@@ -41,8 +41,8 @@
                     }
                 </td>
                 <td>
-                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-controller="Categories" asp-route-Id="@item.Id">Sửa</a>
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-controller="Categories" asp-route-Id="@item.Id">Xóa</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-controller="Brands" asp-route-Id="@item.Id">Sửa</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-controller="Brands" asp-route-Id="@item.Id">Xóa</a>
                 </td>
             </tr>
         }

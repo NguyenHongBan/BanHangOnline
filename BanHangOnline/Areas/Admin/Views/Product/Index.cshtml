@@ -16,15 +16,14 @@
     <thead>
         <tr>
             @* <th scope="col">ID</th> *@
-            <th scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Slug</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Categories</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Manage</th>
+            <th scope="col">Hình Ảnh</th>
+            <th scope="col">Tên Sản Phẩm</th>
+            <th scope="col">Mô Tả</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Số Lượng</th>
+            <th scope="col">Danh Mục</th>
+            <th scope="col">Thương Hiệu</th>
+            <th scope="col">Quản lý</th>
         </tr>
     </thead>
     <tbody>
@@ -35,7 +34,6 @@
                 <td><img src="~/media/products/@item.Image" width="120"/> </td>
                 <td>@item.Name</td>
                 <td>@Html.Raw(@item.Description)</td>
-                <td>@item.Slug</td>
                 <td>@item.Price</td>
                 <td>@item.Quantity</td>
                 <td>@item.Categories.Name</td>
