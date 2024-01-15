@@ -10,7 +10,7 @@ namespace BanHangOnline.Models
 		public string Name { get; set; }
 		[Required(ErrorMessage = "Yêu cầu nhập mô tả Danh mục")]
 		public string Description { get; set; }
-		[Required]
+		
 		public string Slug { get; set; }
 
 		public int Status { get; set; }
