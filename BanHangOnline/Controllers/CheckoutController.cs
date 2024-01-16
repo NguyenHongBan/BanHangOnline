@@ -32,9 +32,22 @@ namespace BanHangOnline.Controllers
                 orderItem.CreatedDate = DateTime.Now;
                 _dataContext.Add(orderItem);
                 _dataContext.SaveChanges();
-                TempData["sucess"] = "Đơn hàng đã được tạo";
-                return RedirectToAction("Index", "Cart");
-            }
+				List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+                foreach (var cart in cartItems)
+                {
+                    var orderdetails = new OrderDetails();
+                    orderdetails.Username = userEmail;
+                    orderdetails.OrderCode = ordercode;
+					orderdetails.ProductId = cart.ProductId;
+					orderdetails.Price = cart.Price;
+					orderdetails.Quantity = cart.Quantity;
+					_dataContext.Add(orderdetails);
+					_dataContext.SaveChanges();
+				}
+				HttpContext.Session.Remove("Cart");
+				TempData["sucess"] = "Thanh toán thành công, vui lòng chờ duyệt đơn hàng";
+				return RedirectToAction("index", "Cart");
+			}
             return View();
         }
     }

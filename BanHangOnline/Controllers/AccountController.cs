@@ -53,7 +53,7 @@ namespace BanHangOnline.Controllers
                 IdentityResult result = await _userManage.CreateAsync(newUser, user.Password);
                 if(result.Succeeded)
                 {
-                    TempData["success"] = "Đăng ký thành công!";
+                    TempData["sucess"] = "Đăng ký thành công!";
                     return Redirect("/account/login");
                 }
                 foreach(IdentityError error in result.Errors)
