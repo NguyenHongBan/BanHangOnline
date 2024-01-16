@@ -1,8 +1,8 @@
-﻿@model UserModel
+﻿@model LoginViewModel
 @{
     ViewData["Title"] = "Dang Nhap";
 }
-<section id="form">
+<section id="">
 	<!--form-->
 	<div class="container">
 		<div class="row">
@@ -24,10 +24,15 @@
 							<span asp-validation-for="Password" class="text-danger"></span>
 						</div>
 						<button class="btn btn-default">Login</button>
-						<button class="btn btn-default" asp-action="Create" asp-controller="Account">Đăng ký tài khoản</button>
+						<a asp-action="Create" asp-controller="Account">Đăng ký tài khoản</a>
 					</form>
 				</div><!--/login form-->
 			</div>
 		</div>
 	</div>
 </section>
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
