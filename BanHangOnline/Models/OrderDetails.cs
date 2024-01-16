@@ -1,4 +1,6 @@
-﻿namespace BanHangOnline.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BanHangOnline.Models
 {
 	public class OrderDetails
 	{
@@ -13,5 +15,7 @@
 		public decimal Price { get; set; }
 
 		public int Quantity { get; set; }
+
+		public ProductModel Product { get; set; }
 	}
 }
