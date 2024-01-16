@@ -1,5 +1,6 @@
 ﻿using BanHangOnline.Models;
 using BanHangOnline.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BanHangOnline.Areas.Admin.Controllers
 {
 	[Area("Admin")]
+    [Authorize]
 	public class CategoriesController : Controller
 	{
 		private readonly DataContext _dataContext;

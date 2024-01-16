@@ -1,11 +1,13 @@
 ﻿using BanHangOnline.Models;
 using BanHangOnline.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BanHangOnline.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class BrandsController : Controller
 	{
         private readonly DataContext _dataContext;
