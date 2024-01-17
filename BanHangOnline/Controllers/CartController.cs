@@ -1,10 +1,12 @@
 ﻿using BanHangOnline.Models;
 using BanHangOnline.Models.ViewModels;
 using BanHangOnline.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BanHangOnline.Controllers
 {
+	[Authorize]
 	public class CartController : Controller
 	{
 		private readonly DataContext _dataContext;
