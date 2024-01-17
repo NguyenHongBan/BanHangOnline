@@ -16,7 +16,8 @@ namespace BanHangOnline.Controllers
 		}
 		public IActionResult Index()
 		{
-			List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+			List<CartItemModel> cartItems = HttpContext.Session.GetJson
+				<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
 			CartItemViewModel cartVM = new()
 			{
 				CartItems = cartItems,
@@ -33,7 +34,8 @@ namespace BanHangOnline.Controllers
 		public async Task<IActionResult> Add(int Id)
 		{
 			ProductModel product = await _dataContext.Products.FindAsync(Id);
-			List<CartItemModel> cart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+			List<CartItemModel> cart = HttpContext.Session.GetJson
+				<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
 			CartItemModel cartItem = cart.Where(p => p.ProductId == Id).FirstOrDefault();
 
 			if (cartItem == null)
