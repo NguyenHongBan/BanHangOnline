@@ -1,4 +1,5 @@
-﻿using BanHangOnline.Repository;
+﻿using BanHangOnline.Models;
+using BanHangOnline.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,15 @@ namespace BanHangOnline.Areas.Admin.Controllers
         {
 			var DetailsOrder = await _dataContext.OrderDetails.Include(o => o.Product).Where(o => o.OrderCode == ordercode).ToListAsync();
             return View(DetailsOrder);
+        }
+
+        public async Task<IActionResult> Delete(int Id)
+        {
+            OrderModel orders = await _dataContext.Orders.FindAsync(Id);
+            _dataContext.Orders.Remove(orders);
+            await _dataContext.SaveChangesAsync();
+            TempData["sucess"] = "Xóa đơn hàng thành công";
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Search(string searchString)
